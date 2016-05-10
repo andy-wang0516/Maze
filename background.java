@@ -1,5 +1,4 @@
-package maze;
-
+package APCSProject;
 //© A+ Computer Science  -  www.apluscompsci.com
 //Name -
 //Date -
@@ -22,10 +21,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class background extends Canvas implements KeyListener, Runnable
-{	private int[][] walls = new int[800][600];
+{	
+	private boolean[][] walls = new boolean[800][600];
 	private Person ship;
 	private theMazeItself m;
-	private Alien alienOne, alienTwo,alien3,alien4,alien5,alien6;
+	private Mushroom m1, m2,m3,m4,m5,m6;
 	private boolean alive1, alive2, alive3,alive4,alive5,alive6;
 	private boolean leftT, rightT, leftD, rightD;
 	private boolean fired = false;
@@ -36,7 +36,7 @@ public class background extends Canvas implements KeyListener, Runnable
 	private ArrayList<Alien> aliens;
 	private ArrayList<Ammo> shots;
 	*/
-
+	private ArrayList<Mushroom> group;
 	private boolean[] keys;
 	private BufferedImage back;
 
@@ -48,15 +48,20 @@ public class background extends Canvas implements KeyListener, Runnable
 
 		//instantiate other stuff
 		m = new theMazeItself(0,0);
-		ship = new Person(20,50,5);
-		alienOne = new Alien(100,100,1);
-		alienTwo = new Alien(100,20,1);
-		alien3 = new Alien(200,100,1);
-		alien4 = new Alien(200,20,1);
-		alien5 = new Alien(300,100,1);
-		alien6 = new Alien(300,20,1);
-		//a = new Ammo(ship.getX()+20,ship.getY(),1);
-	
+		ship = new Person(20,50,4);
+		m1 = new Mushroom(100,400,1);
+		m2 = new Mushroom(50,20,1);
+		m3 = new Mushroom(600,100,1);
+		m4 = new Mushroom(3,300,1);
+		m5 = new Mushroom(300,100,1);
+		m6 = new Mushroom(400,220,1);
+		/*group.add(m1);
+		group.add(m2);
+		group.add(m3);
+		group.add(m4);
+		group.add(m5);
+		group.add(m6);*/
+		
 		this.addKeyListener(this);
 		new Thread(this).start();
 
@@ -77,40 +82,20 @@ public class background extends Canvas implements KeyListener, Runnable
 		//m.draw(graphToBack);
 	//	graphToBack.setColor(Color.WHITE);
 		//graphToBack.fillRect(0,0,800,600);
-		
-m.draw(graphToBack);
-//Test method
+		m.draw(graphToBack);
+
 try {
-	System.out.println(m.GetPixelColor(20, 50));
+	System.out.println(m.GetPixelColor(0, 0));
+	
 } catch (IOException e) {
 	// TODO Auto-generated catch block
 	e.printStackTrace();
 }
-//Test method
-try {
-	leftT = m.GetPixelColor(ship.getX(), ship.getY());
-} catch (IOException e) {
-	// TODO Auto-generated catch block
-	e.printStackTrace();
-}
-try {
-	rightT = m.GetPixelColor(ship.getX()+30, ship.getY());
-} catch (IOException e) {
-	// TODO Auto-generated catch block
-	e.printStackTrace();
-}
-try {
-	rightD = m.GetPixelColor(ship.getX()+30, ship.getY()-30);
-} catch (IOException e) {
-	// TODO Auto-generated catch block
-	e.printStackTrace();
-}
-try {
-	leftD = m.GetPixelColor(ship.getX(), ship.getY()-30);
-} catch (IOException e) {
-	// TODO Auto-generated catch block
-	e.printStackTrace();
-}
+
+//m.createMazwall();
+//System.out.println(m.getMW(0, 0));
+
+
 
 	
 	if (ship.getX() > -5 && leftT == false && leftD == false)
@@ -135,16 +120,56 @@ try {
 		}
 
 		//add in collision detection
-		
+	
+		//array of mushrooms
+	
+		/*group.draw(graphToBack);
+	
 
-
+	
+		// collision detection
+		group.removeDeadOnes(ship);
+	
+		twoDGraph.drawImage(back, null, 0, 0);
+		back = null;*/
+//for(Mushroom m: group)
+//{
+	/*if(ship.getX() == m1.getX() && ship.getY() == m1.getY() )
+	{
+		System.exit(1);
 		
-		alienTwo.draw(graphToBack);
-		alienOne.draw(graphToBack);
-		alien3.draw(graphToBack);
-		alien4.draw(graphToBack);
-		alien5.draw(graphToBack);
-		alien6.draw(graphToBack);
+		}
+//}
+	if(ship.getX() == m2.getX() && ship.getY() == m2.getY() )
+	{
+		System.exit(1);
+	}
+	if(ship.getX() == m3.getX() && ship.getY() == m3.getY() )
+	{
+		System.exit(1);
+	}
+	if(ship.getX() == m4.getX() && ship.getY() == m4.getY() )
+	{
+		System.exit(1);
+	}
+		
+	if(ship.getX() == m5.getX() && ship.getY() == m5.getY() )
+	{
+		System.exit(1);
+	}
+	if(ship.getX() == m6.getX() && ship.getY() == m6.getY() )
+	{
+		System.exit(1);
+	}
+		*/
+	
+	
+		m1.draw(graphToBack);
+		m2.draw(graphToBack);
+		m3.draw(graphToBack);
+		m4.draw(graphToBack);
+		m5.draw(graphToBack);
+		m6.draw(graphToBack);
 		
 		ship.draw(graphToBack);
 		twoDGraph.drawImage(back, null, 0, 0);

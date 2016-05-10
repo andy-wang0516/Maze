@@ -1,4 +1,5 @@
-package Maze;
+package APCSProject;
+
 import javax.swing.JFrame;
 import java.awt.Component;
 
@@ -9,10 +10,10 @@ public class Maze extends JFrame
 
 	public Maze()
 	{
-		super("STARFIGHTER");
+		super("MAZE");
 		setSize(WIDTH,HEIGHT);
 
-		Background theGame = new Background();
+		background theGame = new background();
 		((Component)theGame).setFocusable(true);
 
 		getContentPane().add(theGame);
@@ -24,4 +25,5 @@ public class Maze extends JFrame
 	{
 		Maze run = new Maze();
 	}
+
 }

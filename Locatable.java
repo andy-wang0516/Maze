@@ -1,4 +1,9 @@
 package APCSProject;
+//© A+ Computer Science  -  www.apluscompsci.com
+//Name -
+//Date -
+//Class -
+//Lab  -
 
 public interface Locatable
 {
@@ -9,4 +14,3 @@ public interface Locatable
     public int getX();
     public int getY();
 }
-

@@ -1,5 +1,4 @@
-package maze;
-
+package APCSProject;
 //© A+ Computer Science  -  www.apluscompsci.com
 //Name -
 //Date -
@@ -14,13 +13,14 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
-import javax.imageio.ImageIO;
+
+import unit16PictureLab.Pixel;
 
 import java.awt.image.BufferedImage;
 
 public class theMazeItself extends MovingThing {
 	private Image image;
-	private int[][] mazwall;
+	private boolean[][] mazwall = new boolean[800][600];;
 	private BufferedImage bufferedImage;
 
 	public theMazeItself() {
@@ -28,10 +28,11 @@ public class theMazeItself extends MovingThing {
 	}
 
 	public theMazeItself(int x, int y) {
+		
 		super(x, y);
 
 		try {
-			image = ImageIO.read(new File("src/maze/maze.png"));
+			image = ImageIO.read(new File("src/APCSProject/maze.png"));
 		} catch (Exception e) {
 			// feel free to do something here
 		}
@@ -47,7 +48,7 @@ public class theMazeItself extends MovingThing {
 
 	public boolean GetPixelColor(int x, int y) throws IOException {
 
-		File file = new File("src/maze/maze.png");
+		File file = new File("src/APCSProject/maze.png");
 		BufferedImage image = ImageIO.read(file);
 		// Getting pixel color by position x and y
 		int clr = image.getRGB(x, y);
@@ -58,10 +59,29 @@ public class theMazeItself extends MovingThing {
 			System.out.println(red + "" + green + "" + blue);
 			return false;
 		}
-		System.out.println(red + "" + green + "" + blue);
-		return true;
+		else {
+			System.out.println(red + "" + green + "" + blue);
+			return true;
+		}
+		
 	}
+	
 
+	
+public void createMazwall() throws IOException{
+	for (int row = 0; row < 800; row++) {
+		for (int col = 0; col < 600; col++) {
+			
+				boolean hi = GetPixelColor(row, col);
+				mazwall[row][col] =  hi;
+			
+		}
+	}
+}
+	public boolean getMW(int x, int y) throws IOException{
+		createMazwall();
+		return mazwall[x][y];
+	}
 	public String toString() {
 		return super.toString();
 	}
@@ -69,7 +89,7 @@ public class theMazeItself extends MovingThing {
 	@Override
 	public void setSpeed(int s) {
 		// TODO Auto-generated method stub
-
+		s=0;
 	}
 
 	@Override
